@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">ApolloTest</string>
+    <string name="test">看起来好丑，Item间应该有个分割线，当你去找时，你会发现RecyclerView\n没有\n支持divider这样\n的属性。那么怎么办，你可以给Item的布局去设置margin，当然了这种方式不够优雅，我们文章开始说了，我们可以自由的去定制它，当然我们的分割线也是可以定制的。
+    该方法的参数为RecyclerView.ItemDecoration，该类为抽象类，官方目前并没有提供默认的实现类（我觉得最好能提供几个）。
+该类的源码：\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n
+        实现类可以看到通过读取系统主题中的 android.R.attr.listDivider作为Item间的分割线，并且支持横向\n和纵向。如果你不\n清楚它\n是怎么做到的读取系统的属性用于自身，请参考我的另一篇博文：Android 深入理解Android中的自定义属性
+
+获取到listDivider以后，该属性的值是\n个Drawable，在getItemOffsets中，outRect去设\n置了绘\n制的范\n围。onDraw中实现了真正的绘制。
+
+我们在原来\n的代\n码中\n添加\n一句：
+        有没有注意到有个属性：app:layout_behavior="@string/appbar_scrolling_view_behavior",它就是指n\n\n\n\n\n\n\n\n\n\n\n\n\定Behavior的，appbar_scrolling_view_behavior对应的类的名称是：android.support.design.widget.AppBarLayout$ScrollingViewBehavior感兴趣的可以去分析源码。
+
+好了，我们n\n\n\n\n\n\n\n\n\n\n\n\n\现在会用AppBarLayout啦~是不是发现用起n\n\n\n\n\n\n\n\n\n\n\n\n\来so easy!接下来我们把剩下CollapsingToolbarLayout的给"消化"掉！
+
+    </string>
+</resources>
